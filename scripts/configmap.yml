@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap # Type of k8s workload
+metadata:
+  name: db-config # Name of the config map
+data:
+  # Actual data used in the deployment
+  DATABASE_URL: "postgresql://eswar:sntfsH4KseIRok6uJt8kecLmz0ikuHFE@dpg-cruv2s88fa8c73co7bhg-a.singapore-postgres.render.com/bookiedb_1h4f"

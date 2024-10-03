@@ -1,1 +1,27 @@
-# Write Kubernetes Deployment Script
+# Deployment configuration for the book catalog microservice
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-catalog
+spec:
+  replicas: 1  # Number of replicas for the deployment
+  selector:
+    matchLabels: 
+      app: book-catalog  # Label to match for selecting pods
+  template:
+    metadata:
+      labels:
+        app: book-catalog  # Labels for the pod
+    spec:
+      containers:
+      - name: book-catalog  # Container name
+        image: bookcatalog:latest  # Updated image tag
+        imagePullPolicy: IfNotPresent  # Pull the image if it’s not already present
+        ports: 
+        - containerPort: 8000  # Port exposed by the container
+        env:  # Environment variables
+        - name: DATABASE_URL  # Name of the environment variable
+          valueFrom:
+            configMapKeyRef:  # Reference to a config map for the value
+              name: db-config  # Name of the config map
+              key: DATABASE_URL  # Key in the config map to retrieve the value

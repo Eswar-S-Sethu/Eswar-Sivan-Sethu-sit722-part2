@@ -1,0 +1,13 @@
+# Service configuration for the book catalog microservice
+apiVersion: v1
+kind: Service
+metadata:
+  name: bookcatalog-service
+spec:
+  selector:
+    app: book-catalog
+  type: NodePort  # This allows you to access the service externally
+  ports:
+    - port: 8000       # The port that will be exposed
+      targetPort: 8000 # The port on the container that is listening
+      nodePort: 31395  # The port to access from outside the cluster
